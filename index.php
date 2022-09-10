@@ -1,149 +1,147 @@
 <?php
+#####@armof####
+##@php_aba#####
 ob_start();
-$token = "5737339516:AAFbUdBao0lcyfdlssf_KloejwGigy597p0"; 
-define("API_KEY",$token);
-echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
+$API_KEY = "5737339516:AAFbUdBao0lcyfdlssf_KloejwGigy597p0";
+define('API_KEY',$API_KEY);
+echo "<a href='https://api.telegram.org/bot$API_KEY/setwebhook?url=".$_SERVER['SERVER_NAME']."".$_SERVER['SCRIPT_NAME']."'>setwebhook</a>";
 function bot($method,$datas=[]){
-$JJJ22J = http_build_query($datas);
-$url = "https://api.telegram.org/bot".API_KEY."/".$method."?$JJJ22J";
-$JJJ22J = file_get_contents($url);
-return json_decode($JJJ22J);
+$url = "https://api.telegram.org/bot".API_KEY."/".$method;
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_URL,$url); curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch,CURLOPT_POSTFIELDS,$datas);
+$res = curl_exec($ch);
+if(curl_error($ch)){
+var_dump(curl_error($ch));
+}
+else
+{
+return json_decode($res);
+}
 }
 $update = json_decode(file_get_contents('php://input'));
-$message = $update->message;
-$chat_id = $message->chat->id;
-$text = $message->text;
-$get_trgma=file_get_contents('$from_id/trgm.txt');
-$chat_id2 = $update->callback_query->message->chat->id;
-$message_id = $update->callback_query->message->message_id;
+$php_aba = $update->message;
+$armof = $php_aba->text;
+$F_PPP = $php_aba->chat->id;
+$from_id = $php_aba->from->id;
 $data = $update->callback_query->data;
-$name = $up->from->first_name;
-$update = json_decode(file_get_contents("php://input"));
-$message = $update->message;
-$txt = $message->caption;
-$text = $message->text;
-$chat_id = $message->chat->id;
-$statuss= file_get_contents("NumUser$chat_id.txt");
-$staats= file_get_contents("UserNumUser$chat_id.txt");
-$from_id = $message->from->id;
-$new = $message->new_chat_members;
-$message_id = $message->message_id;
-$type = $message->chat->type;
-$name = $message->from->first_name;
-if(isset($update->callback_query)){
-
-$up = $update->callback_query;
-$chat_id = $up->message->chat->id;
-$from_id = $up->from->id;
-$user = $up->from->username;
-$name = $up->from->first_name;
-$message_id = $up->message->message_id;
-$data = $up->data;
-}
-if($text == '/start'){
+$F_PPP2 = $update->callback_query->message->chat->id;
+$php_aba_id2 = $update->callback_query->message->message_id;
+$username = $update->message->from->username;
+$date = "https://api.rangatiratan.ga/tiq.php";
+$g = file_get_contents($date);
+$js = json_decode($g);
+$da = $js->Date;
+$time = $js->Time;
+$bot = bot('getme',['bot'])->result->username;
+echo "<br><a  href='https://t.me/$bot'>@$bot</a>";
+#####اوامر المطور انت ظيفها هنا####
+if($armof == "/start"){
 bot('sendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
-*مرحبا بك عزيزي المستخدم* ( [$name](tg://user?id=$chat_id) )
-
-- في بوت الارقام الوهمية
-
-- يمكنك الحصول علي رقم وهمي مجانا
+        'chat_id'=>$F_PPP,
+      'text'=>" 
+▫️- اهلا بك : [$name](tg://user?id=$F_PPP) 
+▫️- في بوت تحميل
+من ( الميوزكلي والانستا)
+▫️- يمكنك تحمل صورة او فديو من الانستا عن طريق ارسال رابط الفديو او الصورة الي✅
+▫️- ويمكنك ايضا تحميل مقطع من الميوزكلي عن طريق ارسال رابط الفيدو الي ليتم تحميله لك 〽️
+▫️- يمكنك استخراج معلومات الانستا عن طريق ارسال يوزر الحساب ⚠️
+▫️- للتوضيح اكثر ارسل /help -▫️
 ",
+      'parse_mode'=>"MarkDown",
 'disable_web_page_preview'=>true,
-'parse_mode'=>"markdown",
 'reply_markup'=>json_encode([
-'inline_keyboard'=>[
-[['text'=>'الحصول علي رقم وهمي' ,'callback_data'=>"GetNum"]],
-]
-])
-]);
-}
-if($data=="GetNum"){
-$apiNum = json_decode(file_get_contents("http://darr.zzz.com.ua/apix/sd.php"),true);
-$donNum = $apiNum["result"];
-bot('editmessagetext',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-رقمك الوهمي هو
-
-( `$donNum` )
-",
-'disable_web_page_preview'=>true,
-'parse_mode'=>"markdown",
-'reply_markup'=>json_encode([
-'inline_keyboard'=>[
-[['text'=>'الحصول علي الرسائل' ,'callback_data'=>"Senders"]],
-[['text'=>'الغاء' ,'callback_data'=>"itsBack"]],
-]
-])
-]);
-file_put_contents("NumUser$chat_id.txt","$donNum");
+        'inline_keyboard'=>[
+[['text'=>"• تابعنا☬'",'url'=>"https://t.me/armof"]],    
+        ]
+    ])
+    ]);
+      
+if ($update && !in_array($F_PPP, $u)) {
+    file_put_contents("memb.txt", $F_PPP."\n",FILE_APPEND);
+  }
 }
 
-if($data=="Senders"){
-$apiNumSend = json_decode(file_get_contents("http://darr.zzz.com.ua/apix/sd.php/$statuss"),true);
-$donNumD = $apiNum["last_Message"];
-bot('editmessagetext',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-الرسائل المرسلة للرقم 
+if($armof == "/help"){
+	bot('sendMessage',[
+        'chat_id'=>$F_PPP,
+      'text'=>"- اهلا بك مرة اخرى ؛ [$name](tg://user?id=$F_PPP) 
 
-( *$donNumD* )
-",
+☬ - قم بنسخ رابط الصورة او الفيديو من الانستا  ،
+☬ - وارسالةه الى البوت سوف يتم تحميله ،
+☬ - وارسالة اليك بكل سهولةه ، 📬
+☬ - ارسل يوزر الحساب الخاص بك ، 
+☬ - وسوف يتم ارسال معلوماته اليك من خلال البوت ،
+﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎﹎",
+      'parse_mode'=>"MarkDown",
 'disable_web_page_preview'=>true,
-'parse_mode'=>"markdown",
 'reply_markup'=>json_encode([
-'inline_keyboard'=>[
-[['text'=>'تحديث' ,'callback_data'=>"Update"]],
-[['text'=>'رجوع للخلف' ,'callback_data'=>"itsBack"]],
-]
-])
+        'inline_keyboard'=>[
+[['text'=>"• تابعنا☬'",'url'=>"https://t.me/armof"]]    
+        ]
+    ])
+    ]);
+    }
+
+
+if(preg_match('/.*instagram\.com.*/i',$armof)){
+ bot('sendmessage',[
+  'chat_id'=>$F_PPP,
+    'text'=>"- يرجى الانتظار قليلا من فضلك ، 🔱
+- جار التحميل ، قناة البوت ؛ @armof ،",
+'parse_mode'=>"MarkDown",
+'disable_web_page_preview'=>true,
+'reply_markup'=>json_encode([
+        'inline_keyboard'=>[
+[['text'=>"• تابعنا'",'url'=>"t.me/armof"]],   
+        ]
+    ])
+    ]);
+bot('sendphoto',[
+ 'chat_id'=>$F_PPP,
+  'photo'=>"$armof",
+'parse_mode'=>"MarkDown",
+'disable_web_page_preview'=>true,
+'reply_markup'=>json_encode([
+        'inline_keyboard'=>[
+[['text'=>"• تابعنا'",'url'=>"t.me/armof"]],   
+        ]
+    ])
+    ]);
+ bot('sendvideo',[
+  'chat_id'=>$F_PPP,
+   'video'=>"$armof",
+'parse_mode'=>"MarkDown",
+'disable_web_page_preview'=>true,
+'reply_markup'=>json_encode([
+        'inline_keyboard'=>[
+ [['text'=>"• تابعنا'",'url'=>"t.me/armof"]],
+        ]
+    ])
+    ]);
+    }
+#####مؤيد#    الايبي لحسن######
+####ابن مؤيد####
+if($armof != "/start"){
+$Api = json_decode(file_get_contents("https://forhassan.ml/my_ip/story.php?username=$armof"),true);
+for($i = 0; $i<count($Api['Info']['photo']); $i++){
+$photo = $Api['Info']['photo'][$i]['url'];
+$nm = $i +1;
+bot('sendphoto',[
+'chat_id'=>$F_PPP,
+'photo'=>$photo,
+'caption'=>"🖼| صورة : $nm ",
 ]);
 }
-
-if($data=="Update"){
-$apiNumSend = json_decode(file_get_contents("http://darr.zzz.com.ua/apix/sd.php/$statuss"),true);
-$donNumD = $apiNum["last_Message"];
-bot('editmessagetext',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-تم تحديث الرسائل 
-
-( *$donNumD* )
-",
-'disable_web_page_preview'=>true,
-'parse_mode'=>"markdown",
-'reply_markup'=>json_encode([
-'inline_keyboard'=>[
-[['text'=>'تحديث' ,'callback_data'=>"Update"]],
-[['text'=>'رجوع للخلف' ,'callback_data'=>"itsBack"]],
-]
-])
+$Api1 = json_decode(file_get_contents("https://forhassan.ml/my_ip/story.php?username=$armof"),true);
+for($i = 0; $i<count($Api1['Info']['video']); $i++){
+$video = $Api1['Info']['video'][$i]['url'];
+$nm1 = $i +1;
+bot('sendvideo',[
+'chat_id'=>$F_PPP,
+'video'=>$video,
+'caption'=>"🖼| الفيديو : $nm1 ",
 ]);
-}
-
-if($data=="itsBack"){
-bot('editmessagetext',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
-*مرحبا بك عزيزي المستخدم* ( [$name](tg://user?id=$chat_id) )
-
-- في بوت الارقام الوهمية
-
-- يمكنك الحصول علي رقم وهمي مجانا
-",
-'disable_web_page_preview'=>true,
-'parse_mode'=>"markdown",
-'reply_markup'=>json_encode([
-'inline_keyboard'=>[
-[['text'=>'الحصول علي رقم وهمي' ,'callback_data'=>"GetNum"]],
-]
-])
-]);
-file_put_contents("NumUser$chat_id.txt","");
-}
+}}
+####@armof######
+####@php_aba####
